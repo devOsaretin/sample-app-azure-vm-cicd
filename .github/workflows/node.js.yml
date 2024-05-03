@@ -1,0 +1,34 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: SSH into Azure VM and pull changes
+        run: |
+          sshpass -p ${{ secrets.AZURE_VM_PASSWORD }} ssh devosaretin@20.162.96.26 "cd sample-app-azure-vm-cicd && git pull"
+
+
+      - name: Stop and rebuild with docker compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: 20.162.96.26
+          username: devosaretin
+          password: ${{ secrets.AZURE_VM_PASSWORD }}
+          script: |
+            cd sample-app-azure-vm-cicd
+            sudo docker-compose down
+            sudo docker-compose up --build
+

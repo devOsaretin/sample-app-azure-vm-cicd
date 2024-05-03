@@ -3,7 +3,7 @@ const getUserList = () => {
 		{
 			id: 1,
 			isPublic: true,
-			name: "user1",
+			name: "Osaretin",
 			companies: ["com1", "com2", "com3"],
 			books: [
 				{
@@ -19,7 +19,7 @@ const getUserList = () => {
 		{
 			id: 2,
 			isPublic: true,
-			name: "kk",
+			name: "Matthew",
 			companies: ["com1", "com2", "com3"],
 			books: [
 				{

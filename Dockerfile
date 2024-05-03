@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:18 AS builder
+FROM node:22 AS builder
 
 
 WORKDIR /app
@@ -10,11 +10,5 @@ RUN npm install
 
 COPY . .
 
-# Stage 2: Create the final image
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app .
 
 CMD ["node", "server.js"]

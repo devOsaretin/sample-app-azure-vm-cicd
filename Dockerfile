@@ -1,15 +1,17 @@
 # Stage 1: Build the application
-FROM node:20-alpine AS builder
+FROM node:18 AS builder
+
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --production
+
+RUN npm install 
 
 COPY . .
 
 # Stage 2: Create the final image
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 

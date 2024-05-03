@@ -31,5 +31,5 @@ jobs:
           script: |
             cd sample-app-azure-vm-cicd
             sudo docker-compose down
-            sudo docker-compose up --build
+            sudo docker-compose up --build -d
 

@@ -120,6 +120,6 @@ app.delete("/deleteUser/:id", (req, res) => {
 	});
 });
 
-app.listen(80, () => {
+app.listen(4000, () => {
 	console.log("server listening on port 80!");
 });

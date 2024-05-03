@@ -4,8 +4,8 @@ services:
   node:
     build: .
     ports:
-      - "80:80"
+      - "80:4000"
     environment:
-      - PORT=80
+      - PORT=4000
     volumes:
       - .:/app

@@ -1,20 +1,18 @@
-# Use Node.js 20 Alpine as base image
-FROM node:20-alpine
+# Stage 1: Build the application
+FROM node:20-alpine AS builder
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
+RUN npm install --production
 
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
 COPY . .
 
-# Expose port 3000
-EXPOSE 80
+# Stage 2: Create the final image
+FROM node:20-alpine
 
-# Command to run the application
+WORKDIR /app
+
+COPY --from=builder /app .
+
 CMD ["node", "server.js"]
